@@ -18,7 +18,19 @@ public class TP1_guessMyNumber_AUBRY {
                 
              int n = generateurAleat.nextInt(100);
         System.out.println("Saississez un entier entre 0 et 100");
+        int nUser = sc.nextInt();
         
+        while (nUser != n){
+            if (nUser < n)
+                System.out.println("Trop petit");
+            else if (nUser > n){
+                System.out.println("Trop grand");
+            System.out.println("Saississez un autre nombre :");
+            nUser = sc.nextInt();
+            int cpt += 1; 
+            
+            }
+        }
     }
 
 }
