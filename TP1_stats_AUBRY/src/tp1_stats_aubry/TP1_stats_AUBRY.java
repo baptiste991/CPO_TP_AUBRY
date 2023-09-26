@@ -26,8 +26,9 @@ public class TP1_stats_AUBRY {
         
         for (int i=1; i <= nbLances; i++){
             
-            tab[i] += 1;
-            
+            int face = random.nextInt(5);
+            tab[face] += 1;
+        
         }
         
         
