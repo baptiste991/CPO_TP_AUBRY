@@ -30,10 +30,14 @@ public class TP1_stats_AUBRY {
             tab[face] += 1;
         
         }
+        // reste à mettre sous forme de stats + afficher
+        for (int j=0; j < 6; j++){
+            tab[j]=tab[j]/ nbLances;
+        }
         
-        
-        
-        
+        for (int k=0; k < 6; k++){
+            System.out.println((k+1)+ " : "+tab[k]+"%");
+        }
         
     }
     
