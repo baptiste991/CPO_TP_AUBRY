@@ -36,7 +36,7 @@ public class TP1_stats_AUBRY {
         }
         
         for (int k=0; k < 6; k++){
-            System.out.println((k+1)+ " : "+tab[k]+"%");
+            System.out.println((k+1)+ " : "+tab[k]*100+"%");
         }
         
     }
