@@ -11,7 +11,7 @@ package tp3_heritage_aubry;
 public class Epée extends Arme {
     double finesse;
 
-    public Epée(String nom, int finesse, int niveauAttaque) {
+    public Epée(String nom, double finesse, int niveauAttaque) {
         super(nom, niveauAttaque);
         if (finesse <0 ) finesse = 0;
         else if (finesse >= 100) finesse = 100;
