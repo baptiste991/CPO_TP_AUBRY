@@ -2,14 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package tp3_heritage_aubry;
+package Armes;
 
 /**
  *
  * @author bapti
  */
 public class Baton extends Arme{
-    int age;
+    private int age;
 
     public Baton(String nom, int age, int niveauAttaque) {
         super(nom, niveauAttaque);
