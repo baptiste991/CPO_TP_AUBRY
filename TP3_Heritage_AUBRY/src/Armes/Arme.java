@@ -11,6 +11,20 @@ package Armes;
 public class Arme {
     private String nom;
     private int niveauAttaque;
+    private double attribut;
+
+    public void setAttribut(double attribut) {
+        this.attribut = attribut;
+    }
+
+    public double getAttribut() {
+        return attribut;
+    }
+    
+    public double recupPoint(){
+        return this.niveauAttaque;
+    }
+    
 
     //constructeur
     public Arme(String nom, int niveauAttaque) {
@@ -23,7 +37,6 @@ public class Arme {
         return "Arme{" + "nom=" + nom + '}';
     }
 
-
 //getter nom
     public String getNom() {
         return nom;
@@ -32,6 +45,4 @@ public class Arme {
     public void setNom(String nom) {
         this.nom = nom;
     }
-    
-    
 }

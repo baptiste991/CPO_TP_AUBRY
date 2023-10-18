@@ -14,11 +14,13 @@ public class Magicien extends Personnage{
     public Magicien(String nom, int HP, String confirme) {
         super(nom, HP);
         this.confirme = "confirme".equals(confirme);
+        this.nbPersos();
+        this.nbMages();
+        if (this.confirme == true) this.setAttri(true);
+        else this.setAttri(false);
     }
 
     public void setConfirme(boolean confirme) {
         this.confirme = confirme;
     }
-    
-    
 }

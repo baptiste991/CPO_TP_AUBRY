@@ -14,6 +14,8 @@ public class Guerrier extends Personnage{
     public Guerrier(String nom, int HP, String cheval) {
         super(nom, HP);
         this.cheval = "cheval".equals(cheval);
+        this.nbPersos();
+        this.nbGuerriers();
     }
 
     public void setCheval(boolean cheval) {

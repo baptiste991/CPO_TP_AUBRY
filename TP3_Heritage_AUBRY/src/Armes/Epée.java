@@ -16,6 +16,7 @@ public class Epée extends Arme {
         if (finesse <0 ) finesse = 0;
         else if (finesse >= 100) finesse = 100;
         this.finesse = finesse;
+        this.setAttribut(finesse);  
     }
 
     public double getFinesse() {

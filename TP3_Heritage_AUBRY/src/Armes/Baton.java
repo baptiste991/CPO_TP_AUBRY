@@ -16,6 +16,12 @@ public class Baton extends Arme{
         if (age <0 ) age = 0;
         else if (age >= 100) age = 100;
         this.age = age;
+        this.setAttribut(age);  
     }
+
+    public int getAge() {
+        return age;
+    }
+    
     
 }
