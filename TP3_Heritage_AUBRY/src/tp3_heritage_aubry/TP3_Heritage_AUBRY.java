@@ -60,7 +60,6 @@ public class TP3_Heritage_AUBRY {
        
        System.out.println("PV Mage1 : "+mage1.getHP());
        System.out.println("PV Guerrier1 : "+guerrier1.getHP());
-       
     }
     
     
