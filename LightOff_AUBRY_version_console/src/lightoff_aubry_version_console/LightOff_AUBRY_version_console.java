@@ -14,8 +14,8 @@ public class LightOff_AUBRY_version_console {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        GrilleDeJeu grille = new GrilleDeJeu(3, 3);
-        System.out.println(grille.matriceCellules);
+        GrilleDeJeu grille = new GrilleDeJeu(7, 7);
+        System.out.println(grille.toString());
     }
     
 }
