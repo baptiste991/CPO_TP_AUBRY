@@ -16,6 +16,8 @@ public class LightOff_AUBRY_version_console {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
+        
         int n = demanderDifficulté();
 
         Partie partie = new Partie(n);
