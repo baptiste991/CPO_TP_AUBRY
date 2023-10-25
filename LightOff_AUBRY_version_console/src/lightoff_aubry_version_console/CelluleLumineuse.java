@@ -5,6 +5,7 @@ package lightoff_aubry_version_console;
  * @author bapti
  */
 public class CelluleLumineuse {
+
     private boolean etat;
 
     /**
@@ -13,34 +14,36 @@ public class CelluleLumineuse {
     public CelluleLumineuse() {
         etat = false;
     }
-    
+
     /**
      * change l'état de la cellule
      */
-    public void activerCellule(){
+    public void activerCellule() {
         // inversion de l'état de la cellule
         this.etat = !this.etat;
     }
-    
+
     /**
      * éteintnla cellule
      */
-    public void eteindreCellule(){
+    public void eteindreCellule() {
         // eteint la cellule, si allumé ne fait rien
         this.etat = false;
     }
-    
+
     /**
      * test si la cellule est éteinte
+     *
      * @return boolean vrai si la cellule est éteinte faux si non
      */
-    public boolean estEteint(){
+    public boolean estEteint() {
         // renvoie true si la cellule est eteinte et false si elle est allumée
         return !this.etat;
     }
 
     /**
      * getter de l'attribut état
+     *
      * @return valeur etat
      */
     public boolean getEtat() {
@@ -49,15 +52,17 @@ public class CelluleLumineuse {
     }
 
     /**
-     * affiche la cellule 
-     * @return string 
+     * affiche la cellule
+     *
+     * @return string
      */
     @Override
     public String toString() {
-        if (this.etat) return "X";
-        else return "O";
+        if (this.etat) {
+            return "X";
+        } else {
+            return "O";
+        }
     }
-    
-    
+
 }
-        

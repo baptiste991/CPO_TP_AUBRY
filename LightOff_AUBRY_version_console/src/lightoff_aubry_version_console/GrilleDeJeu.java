@@ -17,8 +17,9 @@ public class GrilleDeJeu {
     private int nbColonnes;
 
     /**
-     * constructeur 
-     * @param nbLignes nombre de lignes de la matrice à créer 
+     * constructeur
+     *
+     * @param nbLignes nombre de lignes de la matrice à créer
      * @param nbColonnes nombre de colonnes de la matrice à créer
      */
     public GrilleDeJeu(int nbLignes, int nbColonnes) {
@@ -30,6 +31,7 @@ public class GrilleDeJeu {
 
     /**
      * génère une matrice avec chaque cellule éteinte
+     *
      * @return une matrice de cellulles lumineuses vierge
      */
     public CelluleLumineuse[][] genererNouvelleMatriceCellulesLumineuses() {
@@ -96,7 +98,8 @@ public class GrilleDeJeu {
     }
 
     /**
-     * Mélange la matrice nbTours fois 
+     * Mélange la matrice nbTours fois
+     *
      * @param nbTours nombre de fois que la matrice sera mélangée
      */
     public void genererMatriceAleatoire(int nbTours) {
@@ -108,6 +111,7 @@ public class GrilleDeJeu {
 
     /**
      * change l'état de la ligne de cellule en question
+     *
      * @param idLigne identificateur de ligne à activer
      */
     public void activerLigneDeCellules(char idLigne) {
@@ -119,6 +123,7 @@ public class GrilleDeJeu {
 
     /**
      * change l'état de la colonne de cellule en question
+     *
      * @param idColonne numéro colonne à activer
      */
     public void activerColonneDeCellules(int idColonne) {
@@ -150,6 +155,7 @@ public class GrilleDeJeu {
 
     /**
      * vérifie si les cellules sont toutes éteintes
+     *
      * @return boolean vrai si toutes éteintes faux si non
      */
     public boolean cellulesToutesEteintes() {
@@ -167,7 +173,8 @@ public class GrilleDeJeu {
     }
 
     /**
-     * affiche grille de jeu 
+     * affiche grille de jeu
+     *
      * @return la grile de jeu sous un format facile à comprendre
      */
     @Override
@@ -187,10 +194,10 @@ public class GrilleDeJeu {
         }
         // retour chariot
         resultat += "\n";
-        
+
         for (int i = 0; i < this.nbLignes; i++) {
             // lettre de ligne 
-            resultat += " " + Character.toString( i +'A') + " |";
+            resultat += " " + Character.toString(i + 'A') + " |";
             for (int j = 0; j < this.nbColonnes; j++) {
                 // contenue chaque case de la matrice
                 resultat += " " + matriceCellules[i][j].toString() + " |";

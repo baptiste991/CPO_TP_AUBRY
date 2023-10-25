@@ -17,19 +17,17 @@ public class LightOff_AUBRY_version_console {
      */
     public static void main(String[] args) {
         int n = demanderDifficulté();
-        
-        Partie partie = new Partie(n);
-        
-        partie.initialiserPartie(n);
-        
-        partie.lancerPartie();
-        
 
+        Partie partie = new Partie(n);
+
+        partie.initialiserPartie(n);
+
+        partie.lancerPartie();
     }
 
-    
-        /**
+    /**
      * demande et récupère le niveau de difficulté choisi par l'utilisateur
+     *
      * @return int le niveau de difficulté
      */
     static int demanderDifficulté() {
@@ -39,11 +37,14 @@ public class LightOff_AUBRY_version_console {
         diff = sc.nextInt();
         int n = 5;
         // mélange la grille
-        switch (diff){
-            case 1 -> n = 5;
-            case 2 -> n = 6;
-            case 3 -> n = 7;
-            
+        switch (diff) {
+            case 1 ->
+                n = 5;
+            case 2 ->
+                n = 6;
+            case 3 ->
+                n = 7;
+
         }
         return n;
     }
