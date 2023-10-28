@@ -4,6 +4,8 @@
  */
 package lightoff_aubry_version_console;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -14,6 +16,8 @@ public class Partie {
 
     GrilleDeJeu grille;
     int nbCoups;
+    int nbCoupsMax;
+    boolean loose = false;
 
     /**
      * constructeur : génère une grille vide et initialise les coups de
@@ -36,13 +40,21 @@ public class Partie {
         int n = 5;
         // mélange la grille
         switch (diff) {
-            case 1 ->
-                n = 5;
-            case 2 ->
-                n = 8;
-            case 3 ->
-                n = 10;
-
+            case 5 -> {
+                n = 20;
+                nbCoupsMax = 20;
+                break;
+            }
+            case 6 -> {
+                n = 100;
+                nbCoupsMax = 10;
+                break;
+            }
+            case 7 -> {
+                n = 300;
+                nbCoupsMax = 8;
+                break;
+            }
         }
         grille.genererMatriceAleatoire(n);
     }
@@ -57,6 +69,25 @@ public class Partie {
      */
     public void lancerPartie() {
         Scanner sc = new Scanner(System.in);
+        boolean coupValide;
+        List<Character> listeDeCaracteres = new ArrayList<>();
+        listeDeCaracteres.add('0');
+        listeDeCaracteres.add('1');
+        listeDeCaracteres.add('2');
+        listeDeCaracteres.add('3');
+        listeDeCaracteres.add('4');
+        listeDeCaracteres.add('5');
+        if(nbCoupsMax == 10 || nbCoupsMax == 8) listeDeCaracteres.add('6');
+        if (nbCoupsMax == 8) listeDeCaracteres.add('7');
+        listeDeCaracteres.add('A');
+        listeDeCaracteres.add('B');
+        listeDeCaracteres.add('C');
+        listeDeCaracteres.add('D');
+        listeDeCaracteres.add('E');
+        if(nbCoupsMax == 10 || nbCoupsMax == 8) listeDeCaracteres.add('F');
+        if (nbCoupsMax == 8) listeDeCaracteres.add('G');
+        listeDeCaracteres.add('Y');
+        listeDeCaracteres.add('Z');
 
         // affichage du message de bienvenu
         bienvenu();
@@ -66,40 +97,60 @@ public class Partie {
 
         while (!grille.cellulesToutesEteintes()) {
             // boucle jeu
-            System.out.println("Choississez une ligne, une colonne ou une diagonale :");
-            char coup = sc.next().charAt(0);
-            // demande le coup + fais la saisie clavier
-
-            if (Character.isDigit(coup)) {
-                // activation dans le cas de la colonne
-                grille.activerColonneDeCellules(Character.getNumericValue(coup));
-            } else if (coup == 'Y') {
-                grille.activerDiagonaleDescendante();
-            } else if (coup == 'Z') {
-                grille.activerDiagonaleMontante();
-            } else {
-                grille.activerLigneDeCellules(coup);
+            int nbCoupsRestants = nbCoupsMax - nbCoups;
+            while (true) {
+                System.out.println("Coups restants : " + nbCoupsRestants);
+                System.out.println("Choississez une ligne, une colonne ou une diagonale :");
+                char coup = sc.next().charAt(0);
+                // demande le coup + fais la saisie clavier
+                coupValide = listeDeCaracteres.contains(coup);
+                if (Character.isDigit(coup) && coupValide) {
+                    // activation dans le cas de la colonne
+                    grille.activerColonneDeCellules(Character.getNumericValue(coup));
+                    break;
+                } else if (coup == 'Y') {
+                    grille.activerDiagonaleDescendante();
+                    break;
+                } else if (coup == 'Z') {
+                    grille.activerDiagonaleMontante();
+                    break;
+                } else if (coupValide){
+                    grille.activerLigneDeCellules(coup);
+                    break;
+                }
             }
-
             System.out.println(grille.toString());
             nbCoups += 1;
+
+            if (nbCoups == nbCoupsMax) {
+                loose = true;
+                break;
+            }
         }
         // affichage du message de fin de jeu
-        terminerPartie();
+        if (loose) {
+            Defaite();
+        } else {
+            Victoire();
+        }
 
     }
 
-    void terminerPartie() {
-        System.out.println("Félicitation vous avez gagner en " + nbCoups + "coups !");
+    void Victoire() {
+        System.out.println("Felicitation vous avez gagner en " + nbCoups + " coups !");
+    }
+
+    void Defaite() {
+        System.out.println("Vous avez utilises trop de coups, vous avez perdu :( \n Reessayez encore !");
     }
 
     void bienvenu() {
-        System.out.println("   ___   _____  __    __         __    __         __      ___  _        __  __     __   _____  ___         _____  ___  ___  ___ \n" +
-"  / __\\  \\_   \\/__\\/\\ \\ \\/\\   /\\/__\\/\\ \\ \\/\\ /\\  /__\\    /   \\/_\\    /\\ \\ \\/ _\\   / /   \\_   \\/ _ \\ /\\  /\\/__   \\/___\\/ __\\/ __\\\n" +
-" /__\\//   / /\\/_\\ /  \\/ /\\ \\ / /_\\ /  \\/ / / \\ \\/_\\     / /\\ //_\\\\  /  \\/ /\\ \\   / /     / /\\/ /_\\// /_/ /  / /\\//  // _\\ / _\\  \n" +
-"/ \\/  \\/\\/ /_//__/ /\\  /  \\ V //__/ /\\  /\\ \\_/ //__    / /_//  _  \\/ /\\  / _\\ \\ / /___/\\/ /_/ /_\\\\/ __  /  / / / \\_// /  / /    \n" +
-"\\_____/\\____/\\__/\\_\\ \\/    \\_/\\__/\\_\\ \\/  \\___/\\__/   /___,'\\_/ \\_/\\_\\ \\/  \\__/ \\____/\\____/\\____/\\/ /_/   \\/  \\___/\\/   \\/     \n" +
-"                                                                                                                                ");
+        System.out.println("   ___   _____  __    __         __    __         __      ___  _        __  __     __   _____  ___         _____  ___  ___  ___ \n"
+                + "  / __\\  \\_   \\/__\\/\\ \\ \\/\\   /\\/__\\/\\ \\ \\/\\ /\\  /__\\    /   \\/_\\    /\\ \\ \\/ _\\   / /   \\_   \\/ _ \\ /\\  /\\/__   \\/___\\/ __\\/ __\\\n"
+                + " /__\\//   / /\\/_\\ /  \\/ /\\ \\ / /_\\ /  \\/ / / \\ \\/_\\     / /\\ //_\\\\  /  \\/ /\\ \\   / /     / /\\/ /_\\// /_/ /  / /\\//  // _\\ / _\\  \n"
+                + "/ \\/  \\/\\/ /_//__/ /\\  /  \\ V //__/ /\\  /\\ \\_/ //__    / /_//  _  \\/ /\\  / _\\ \\ / /___/\\/ /_/ /_\\\\/ __  /  / / / \\_// /  / /    \n"
+                + "\\_____/\\____/\\__/\\_\\ \\/    \\_/\\__/\\_\\ \\/  \\___/\\__/   /___,'\\_/ \\_/\\_\\ \\/  \\__/ \\____/\\____/\\____/\\/ /_/   \\/  \\___/\\/   \\/     \n"
+                + "                                                                                                                                ");
     }
 
 }
