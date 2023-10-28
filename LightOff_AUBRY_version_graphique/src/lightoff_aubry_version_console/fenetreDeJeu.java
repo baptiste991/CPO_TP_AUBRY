@@ -15,6 +15,7 @@ public class fenetreDeJeu extends javax.swing.JFrame {
 
     GrilleDeJeu grille = new GrilleDeJeu(7, 7);
     int nbCoups = 0;
+    int nbCoupsMax;
 
     /**
      * Creates new form fenetreDeJeu
@@ -26,7 +27,7 @@ public class fenetreDeJeu extends javax.swing.JFrame {
                 CelluleGraphique cellGraph = new CelluleGraphique(grille.matriceCellules[i][j]);
                 panneau_grille.add(cellGraph);
                 //cellGraph.setEnabled(false);
-
+// permets de mettre les boutons non cliquables sans les mettres en grisés
                 cellGraph.setModel(new DefaultButtonModel() {
                     @Override
                     public boolean isArmed() {
@@ -42,6 +43,7 @@ public class fenetreDeJeu extends javax.swing.JFrame {
         }
         panneau_grille.setVisible(false);
         panneau_infos.setVisible(false);
+        panneau_finDePartie.setVisible(false);
         btn_ligne_0.setVisible(false);
         btn_ligne_1.setVisible(false);
         btn_ligne_2.setVisible(false);
@@ -105,6 +107,8 @@ public class fenetreDeJeu extends javax.swing.JFrame {
         btn_facile = new javax.swing.JRadioButton();
         btn_normal = new javax.swing.JRadioButton();
         btn_difficile = new javax.swing.JRadioButton();
+        panneau_finDePartie = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -307,12 +311,21 @@ public class fenetreDeJeu extends javax.swing.JFrame {
 
             getContentPane().add(panneau_difficulté, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 30, 250, 200));
 
+            panneau_finDePartie.setBackground(new java.awt.Color(204, 204, 255));
+            panneau_finDePartie.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+            jLabel4.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+            jLabel4.setText("Fin de partie");
+            panneau_finDePartie.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, -1, -1));
+
+            getContentPane().add(panneau_finDePartie, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 500, 250, 170));
+
             setBounds(0, 0, 1044, 740);
         }// </editor-fold>//GEN-END:initComponents
 
     private void btn_startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_startActionPerformed
         int n;
-        
+
         panneau_difficulté.setVisible(false);
         panneau_infos.setVisible(true);
         panneau_grille.setVisible(true);
@@ -325,122 +338,173 @@ public class fenetreDeJeu extends javax.swing.JFrame {
         }
         // mélange la grille
         grille.genererMatriceAleatoire(n);
-        
-        panneau_grille.setVisible(true);
-        btn_ligne_0.setVisible(true);
-        btn_ligne_1.setVisible(true);
-        btn_ligne_2.setVisible(true);
-        btn_ligne_3.setVisible(true);
-        btn_ligne_4.setVisible(true);
-        btn_ligne_5.setVisible(true);
-        btn_ligne_6.setVisible(true);
-        btn_col_0.setVisible(true);
-        btn_col_1.setVisible(true);
-        btn_col_2.setVisible(true);
-        btn_col_3.setVisible(true);
-        btn_col_4.setVisible(true);
-        btn_col_5.setVisible(true);
-        btn_col_6.setVisible(true);
-        btn_diag_mont.setVisible(true);
-        btn_diag_desc.setVisible(true);
+
+        this.grilleVisible();
     }//GEN-LAST:event_btn_startActionPerformed
 
     private void btn_diag_montActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_diag_montActionPerformed
         grille.activerDiagonaleMontante();
         nbCoups += 1;
+        if (this.grilleEteinte()) {
+            panneau_finDePartie.setVisible(true);
+            grilleInvisible();
+        }
     }//GEN-LAST:event_btn_diag_montActionPerformed
 
     private void btn_ligne_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ligne_1ActionPerformed
         grille.activerLigneDeCellules('B');
         nbCoups += 1;
+        if (this.grilleEteinte()) {
+            panneau_finDePartie.setVisible(true);
+            grilleInvisible();
+        }
     }//GEN-LAST:event_btn_ligne_1ActionPerformed
 
     private void btn_ligne_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ligne_2ActionPerformed
         grille.activerLigneDeCellules('C');
         nbCoups += 1;
+        if (this.grilleEteinte()) {
+            panneau_finDePartie.setVisible(true);
+            grilleInvisible();
+        }
     }//GEN-LAST:event_btn_ligne_2ActionPerformed
 
     private void btn_ligne_3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ligne_3ActionPerformed
         grille.activerLigneDeCellules('D');
         nbCoups += 1;
+        if (this.grilleEteinte()) {
+            panneau_finDePartie.setVisible(true);
+            grilleInvisible();
+        }
     }//GEN-LAST:event_btn_ligne_3ActionPerformed
 
     private void btn_ligne_4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ligne_4ActionPerformed
         grille.activerLigneDeCellules('E');
         nbCoups += 1;
+        if (this.grilleEteinte()) {
+            panneau_finDePartie.setVisible(true);
+            grilleInvisible();
+        }
     }//GEN-LAST:event_btn_ligne_4ActionPerformed
 
     private void btn_ligne_5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ligne_5ActionPerformed
         grille.activerLigneDeCellules('F');
         nbCoups += 1;
+        if (this.grilleEteinte()) {
+            panneau_finDePartie.setVisible(true);
+            grilleInvisible();
+        }
     }//GEN-LAST:event_btn_ligne_5ActionPerformed
 
     private void btn_ligne_6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ligne_6ActionPerformed
         grille.activerLigneDeCellules('G');
         nbCoups += 1;
+        if (this.grilleEteinte()) {
+            panneau_finDePartie.setVisible(true);
+            grilleInvisible();
+        }
     }//GEN-LAST:event_btn_ligne_6ActionPerformed
 
     private void btn_col_3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_col_3ActionPerformed
         grille.activerColonneDeCellules(3);
         nbCoups += 1;
+        if (this.grilleEteinte()) {
+            panneau_finDePartie.setVisible(true);
+            grilleInvisible();
+        }
     }//GEN-LAST:event_btn_col_3ActionPerformed
 
     private void btn_col_5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_col_5ActionPerformed
         grille.activerColonneDeCellules(5);
         nbCoups += 1;
+        if (this.grilleEteinte()) {
+            panneau_finDePartie.setVisible(true);
+            grilleInvisible();
+        }
     }//GEN-LAST:event_btn_col_5ActionPerformed
 
     private void btn_col_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_col_2ActionPerformed
         grille.activerColonneDeCellules(2);
         nbCoups += 1;
+        if (this.grilleEteinte()) {
+            panneau_finDePartie.setVisible(true);
+            grilleInvisible();
+        }
     }//GEN-LAST:event_btn_col_2ActionPerformed
 
     private void btn_col_4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_col_4ActionPerformed
         grille.activerColonneDeCellules(4);
         nbCoups += 1;
+        if (this.grilleEteinte()) {
+            panneau_finDePartie.setVisible(true);
+            grilleInvisible();
+        }
     }//GEN-LAST:event_btn_col_4ActionPerformed
 
     private void btn_col_0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_col_0ActionPerformed
         grille.activerColonneDeCellules(0);
         nbCoups += 1;
+        if (this.grilleEteinte()) {
+            panneau_finDePartie.setVisible(true);
+            grilleInvisible();
+        }
     }//GEN-LAST:event_btn_col_0ActionPerformed
 
     private void btn_diag_descActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_diag_descActionPerformed
         grille.activerDiagonaleDescendante();
         nbCoups += 1;
+        if (this.grilleEteinte()) {
+            panneau_finDePartie.setVisible(true);
+            grilleInvisible();
+        }
     }//GEN-LAST:event_btn_diag_descActionPerformed
 
     private void btn_ligne_0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ligne_0ActionPerformed
         grille.activerLigneDeCellules('A');
         nbCoups += 1;
+        if (this.grilleEteinte()) {
+            panneau_finDePartie.setVisible(true);
+            grilleInvisible();
+        }
     }//GEN-LAST:event_btn_ligne_0ActionPerformed
 
     private void btn_col_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_col_1ActionPerformed
         grille.activerColonneDeCellules(1);
         nbCoups += 1;
+        if (this.grilleEteinte()) {
+            panneau_finDePartie.setVisible(true);
+            grilleInvisible();
+        }
     }//GEN-LAST:event_btn_col_1ActionPerformed
 
     private void btn_col_6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_col_6ActionPerformed
         grille.activerColonneDeCellules(6);
         nbCoups += 1;
+        if (this.grilleEteinte()) {
+            panneau_finDePartie.setVisible(true);
+            grilleInvisible();
+        }
     }//GEN-LAST:event_btn_col_6ActionPerformed
 
     private void btn_difficileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_difficileActionPerformed
         btn_facile.setSelected(false);
-        btn_normal.setSelected(false);    
+        btn_normal.setSelected(false);
         btn_start.setEnabled(btn_facile.isSelected() || btn_normal.isSelected() || btn_difficile.isSelected());
+        nbCoupsMax = 8;
     }//GEN-LAST:event_btn_difficileActionPerformed
 
     private void btn_facileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_facileActionPerformed
         btn_difficile.setSelected(false);
         btn_normal.setSelected(false);
         btn_start.setEnabled(btn_facile.isSelected() || btn_normal.isSelected() || btn_difficile.isSelected());
+        nbCoupsMax = 20;
     }//GEN-LAST:event_btn_facileActionPerformed
 
     private void btn_normalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_normalActionPerformed
         btn_difficile.setSelected(false);
         btn_facile.setSelected(false);
         btn_start.setEnabled(btn_facile.isSelected() || btn_normal.isSelected() || btn_difficile.isSelected());
+        nbCoupsMax = 10;
     }//GEN-LAST:event_btn_normalActionPerformed
 
     /**
@@ -478,6 +542,60 @@ public class fenetreDeJeu extends javax.swing.JFrame {
         });
     }
 
+    public boolean grilleEteinte() {
+        boolean estEteinte = true;
+        for (int i = 0; i < 7; i++) {
+            for (int j = 0; j < 7; j++) {
+                if (!grille.matriceCellules[i][j].estEteint()) {
+                    estEteinte = false;
+                    break;
+                }
+            }
+        }
+
+        return estEteinte;
+    }
+
+    public void grilleInvisible() {
+        panneau_grille.setVisible(false);
+        btn_ligne_0.setVisible(false);
+        btn_ligne_1.setVisible(false);
+        btn_ligne_2.setVisible(false);
+        btn_ligne_3.setVisible(false);
+        btn_ligne_4.setVisible(false);
+        btn_ligne_5.setVisible(false);
+        btn_ligne_6.setVisible(false);
+        btn_col_0.setVisible(false);
+        btn_col_1.setVisible(false);
+        btn_col_2.setVisible(false);
+        btn_col_3.setVisible(false);
+        btn_col_4.setVisible(false);
+        btn_col_5.setVisible(false);
+        btn_col_6.setVisible(false);
+        btn_diag_mont.setVisible(false);
+        btn_diag_desc.setVisible(false);
+    }
+
+    public void grilleVisible() {
+        panneau_grille.setVisible(true);
+        btn_ligne_0.setVisible(true);
+        btn_ligne_1.setVisible(true);
+        btn_ligne_2.setVisible(true);
+        btn_ligne_3.setVisible(true);
+        btn_ligne_4.setVisible(true);
+        btn_ligne_5.setVisible(true);
+        btn_ligne_6.setVisible(true);
+        btn_col_0.setVisible(true);
+        btn_col_1.setVisible(true);
+        btn_col_2.setVisible(true);
+        btn_col_3.setVisible(true);
+        btn_col_4.setVisible(true);
+        btn_col_5.setVisible(true);
+        btn_col_6.setVisible(true);
+        btn_diag_mont.setVisible(true);
+        btn_diag_desc.setVisible(true);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_col_0;
     private javax.swing.JButton btn_col_1;
@@ -507,9 +625,11 @@ public class fenetreDeJeu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel lbl_coupsRestants;
     private javax.swing.JLabel lbl_coupsUtilises;
     private javax.swing.JPanel panneau_difficulté;
+    private javax.swing.JPanel panneau_finDePartie;
     private javax.swing.JPanel panneau_grille;
     private javax.swing.JPanel panneau_infos;
     private javax.swing.JLabel txt_bvn;
