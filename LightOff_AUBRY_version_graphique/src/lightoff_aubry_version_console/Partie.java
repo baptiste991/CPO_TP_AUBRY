@@ -14,6 +14,7 @@ public class Partie {
 
     GrilleDeJeu grille;
     int nbCoups;
+    int nbCoupsMax;
 
     /**
      * constructeur : génère une grille vide et initialise les coups de
@@ -36,13 +37,21 @@ public class Partie {
         int n = 5;
         // mélange la grille
         switch (diff) {
-            case 1 ->
-                n = 5;
-            case 2 ->
-                n = 8;
-            case 3 ->
-                n = 10;
-
+            case 5 -> {
+                n = 20;
+                nbCoupsMax = 20;
+                break;
+            }
+            case 6 -> {
+                n = 100;
+                nbCoupsMax = 10;
+                break;
+            }
+            case 7 -> {
+                n = 300;
+                nbCoupsMax = 8;
+                break;
+            }
         }
         grille.genererMatriceAleatoire(n);
     }
