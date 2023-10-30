@@ -84,14 +84,10 @@ public class GrilleDeJeu {
                 int diag = generateurAleat.nextInt(1);
                 if (diag == 0) {
                     // diagonale déscendante
-                    for (int i = 0; i < this.nbColonnes; i++) {
-                        matriceCellules[i][i].activerCellule();
-                    }
+                    this.activerDiagonaleDescendante();
                 } else {
                     // diagonale montante
-                    for (int i = this.nbColonnes; i < 0; i++) {
-                        matriceCellules[i][this.nbColonnes - i].activerCellule();
-                    }
+                    activerDiagonaleMontante();
                 }
                 break;
         }
@@ -103,11 +99,24 @@ public class GrilleDeJeu {
      * @param nbTours nombre de fois que la matrice sera mélangée
      */
     public void genererMatriceAleatoire(int nbTours) {
+        Random generateurAleat = new Random();
         // on la mélange autant de fois que demandé dans nbTours
         for (int i = 0; i < nbTours; i++) {
             this.activerLigneOuCelluleOuDiagonaleAleatoire();
+            if ( i%3 == 0){
+                int diag = generateurAleat.nextInt(1);
+                if (diag == 0) {
+                    // diagonale déscendante
+                    this.activerDiagonaleDescendante();
+                    }
+                } else {
+                    // diagonale montante
+                    this.activerDiagonaleMontante();
+                }
+            }
+            
         }
-    }
+    
 
     /**
      * change l'état de la ligne de cellule en question
