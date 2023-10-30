@@ -5,7 +5,6 @@
 package lightoff_aubry_version_console;
 
 import javax.swing.DefaultButtonModel;
-import javax.swing.JTextField;
 
 /**
  *
@@ -109,6 +108,7 @@ public class fenetreDeJeu extends javax.swing.JFrame {
         btn_difficile = new javax.swing.JRadioButton();
         panneau_finDePartie = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+        lbl_victoire_defaite = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -318,6 +318,9 @@ public class fenetreDeJeu extends javax.swing.JFrame {
             jLabel4.setText("Fin de partie");
             panneau_finDePartie.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, -1, -1));
 
+            lbl_victoire_defaite.setText("victoire ou défaite");
+            panneau_finDePartie.add(lbl_victoire_defaite, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, -1, -1));
+
             getContentPane().add(panneau_finDePartie, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 500, 250, 170));
 
             setBounds(0, 0, 1044, 740);
@@ -339,151 +342,124 @@ public class fenetreDeJeu extends javax.swing.JFrame {
         // mélange la grille
         grille.genererMatriceAleatoire(n);
 
+        int nbCoupsRestants = nbCoupsMax - nbCoups;
+        lbl_coupsUtilises.setText(Integer.toString(nbCoups));
+        lbl_coupsRestants.setText(Integer.toString(nbCoupsRestants));
+
         this.grilleVisible();
+        panneau_grille.repaint();
     }//GEN-LAST:event_btn_startActionPerformed
 
     private void btn_diag_montActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_diag_montActionPerformed
         grille.activerDiagonaleMontante();
         nbCoups += 1;
-        if (this.grilleEteinte()) {
-            panneau_finDePartie.setVisible(true);
-            grilleInvisible();
-        }
+        testFinDePartie();
+        refreshInfos();
     }//GEN-LAST:event_btn_diag_montActionPerformed
 
     private void btn_ligne_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ligne_1ActionPerformed
         grille.activerLigneDeCellules('B');
         nbCoups += 1;
-        if (this.grilleEteinte()) {
-            panneau_finDePartie.setVisible(true);
-            grilleInvisible();
-        }
+        testFinDePartie();
+        refreshInfos();
     }//GEN-LAST:event_btn_ligne_1ActionPerformed
 
     private void btn_ligne_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ligne_2ActionPerformed
         grille.activerLigneDeCellules('C');
         nbCoups += 1;
-        if (this.grilleEteinte()) {
-            panneau_finDePartie.setVisible(true);
-            grilleInvisible();
-        }
+        testFinDePartie();
+        refreshInfos();
     }//GEN-LAST:event_btn_ligne_2ActionPerformed
 
     private void btn_ligne_3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ligne_3ActionPerformed
         grille.activerLigneDeCellules('D');
         nbCoups += 1;
-        if (this.grilleEteinte()) {
-            panneau_finDePartie.setVisible(true);
-            grilleInvisible();
-        }
+        testFinDePartie();
+        refreshInfos();
     }//GEN-LAST:event_btn_ligne_3ActionPerformed
 
     private void btn_ligne_4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ligne_4ActionPerformed
         grille.activerLigneDeCellules('E');
         nbCoups += 1;
-        if (this.grilleEteinte()) {
-            panneau_finDePartie.setVisible(true);
-            grilleInvisible();
-        }
+        testFinDePartie();
+        refreshInfos();
     }//GEN-LAST:event_btn_ligne_4ActionPerformed
 
     private void btn_ligne_5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ligne_5ActionPerformed
         grille.activerLigneDeCellules('F');
         nbCoups += 1;
-        if (this.grilleEteinte()) {
-            panneau_finDePartie.setVisible(true);
-            grilleInvisible();
-        }
+        testFinDePartie();
+        refreshInfos();
     }//GEN-LAST:event_btn_ligne_5ActionPerformed
 
     private void btn_ligne_6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ligne_6ActionPerformed
         grille.activerLigneDeCellules('G');
         nbCoups += 1;
-        if (this.grilleEteinte()) {
-            panneau_finDePartie.setVisible(true);
-            grilleInvisible();
-        }
+        testFinDePartie();
+        refreshInfos();
     }//GEN-LAST:event_btn_ligne_6ActionPerformed
 
     private void btn_col_3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_col_3ActionPerformed
         grille.activerColonneDeCellules(3);
         nbCoups += 1;
-        if (this.grilleEteinte()) {
-            panneau_finDePartie.setVisible(true);
-            grilleInvisible();
-        }
+        testFinDePartie();
+        refreshInfos();
     }//GEN-LAST:event_btn_col_3ActionPerformed
 
     private void btn_col_5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_col_5ActionPerformed
         grille.activerColonneDeCellules(5);
         nbCoups += 1;
-        if (this.grilleEteinte()) {
-            panneau_finDePartie.setVisible(true);
-            grilleInvisible();
-        }
+        testFinDePartie();
+        refreshInfos();
     }//GEN-LAST:event_btn_col_5ActionPerformed
 
     private void btn_col_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_col_2ActionPerformed
         grille.activerColonneDeCellules(2);
         nbCoups += 1;
-        if (this.grilleEteinte()) {
-            panneau_finDePartie.setVisible(true);
-            grilleInvisible();
-        }
+        testFinDePartie();
+        refreshInfos();
     }//GEN-LAST:event_btn_col_2ActionPerformed
 
     private void btn_col_4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_col_4ActionPerformed
         grille.activerColonneDeCellules(4);
         nbCoups += 1;
-        if (this.grilleEteinte()) {
-            panneau_finDePartie.setVisible(true);
-            grilleInvisible();
-        }
+        testFinDePartie();
+        refreshInfos();
     }//GEN-LAST:event_btn_col_4ActionPerformed
 
     private void btn_col_0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_col_0ActionPerformed
         grille.activerColonneDeCellules(0);
         nbCoups += 1;
-        if (this.grilleEteinte()) {
-            panneau_finDePartie.setVisible(true);
-            grilleInvisible();
-        }
+        testFinDePartie();
+        refreshInfos();
     }//GEN-LAST:event_btn_col_0ActionPerformed
 
     private void btn_diag_descActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_diag_descActionPerformed
         grille.activerDiagonaleDescendante();
         nbCoups += 1;
-        if (this.grilleEteinte()) {
-            panneau_finDePartie.setVisible(true);
-            grilleInvisible();
-        }
+        testFinDePartie();
+        refreshInfos();
     }//GEN-LAST:event_btn_diag_descActionPerformed
 
     private void btn_ligne_0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ligne_0ActionPerformed
         grille.activerLigneDeCellules('A');
         nbCoups += 1;
-        if (this.grilleEteinte()) {
-            panneau_finDePartie.setVisible(true);
-            grilleInvisible();
-        }
+        testFinDePartie();
+        refreshInfos();
     }//GEN-LAST:event_btn_ligne_0ActionPerformed
 
     private void btn_col_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_col_1ActionPerformed
         grille.activerColonneDeCellules(1);
         nbCoups += 1;
-        if (this.grilleEteinte()) {
-            panneau_finDePartie.setVisible(true);
-            grilleInvisible();
-        }
+        testFinDePartie();
+        refreshInfos();
     }//GEN-LAST:event_btn_col_1ActionPerformed
 
     private void btn_col_6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_col_6ActionPerformed
         grille.activerColonneDeCellules(6);
         nbCoups += 1;
-        if (this.grilleEteinte()) {
-            panneau_finDePartie.setVisible(true);
-            grilleInvisible();
-        }
+        testFinDePartie();
+        refreshInfos();
     }//GEN-LAST:event_btn_col_6ActionPerformed
 
     private void btn_difficileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_difficileActionPerformed
@@ -504,7 +480,7 @@ public class fenetreDeJeu extends javax.swing.JFrame {
         btn_difficile.setSelected(false);
         btn_facile.setSelected(false);
         btn_start.setEnabled(btn_facile.isSelected() || btn_normal.isSelected() || btn_difficile.isSelected());
-        nbCoupsMax = 10;
+        nbCoupsMax = 12;
     }//GEN-LAST:event_btn_normalActionPerformed
 
     /**
@@ -536,6 +512,7 @@ public class fenetreDeJeu extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new fenetreDeJeu().setVisible(true);
             }
@@ -596,6 +573,48 @@ public class fenetreDeJeu extends javax.swing.JFrame {
         btn_diag_desc.setVisible(true);
     }
 
+    public void refreshInfos() {
+        int nbCoupsRestants = nbCoupsMax - nbCoups;
+        lbl_coupsUtilises.setText(Integer.toString(nbCoups));
+        lbl_coupsRestants.setText(Integer.toString(nbCoupsRestants));
+    }
+
+    public boolean aGagne() {
+        boolean gagne = false;
+        if (this.grilleEteinte()) {
+            gagne = true;
+        }
+        return gagne;
+    }
+
+    public void Victoire() {
+        grilleInvisible();
+        panneau_finDePartie.setVisible(true);
+        lbl_victoire_defaite.setText("Vous avez gagné !");
+    }
+
+    public boolean aPerdu() {
+        boolean perdu = false;
+        if (nbCoups == nbCoupsMax) {
+            perdu = true;
+        }
+        return perdu;
+    }
+
+    public void Defaite() {
+        grilleInvisible();
+        panneau_finDePartie.setVisible(true);
+        lbl_victoire_defaite.setText("Vous avez perdu !");
+    }
+
+    public void testFinDePartie() {
+        if (aGagne()) {
+            Victoire();
+        }
+        if (aPerdu()) {
+            Defaite();
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_col_0;
     private javax.swing.JButton btn_col_1;
@@ -628,6 +647,7 @@ public class fenetreDeJeu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel lbl_coupsRestants;
     private javax.swing.JLabel lbl_coupsUtilises;
+    private javax.swing.JLabel lbl_victoire_defaite;
     private javax.swing.JPanel panneau_difficulté;
     private javax.swing.JPanel panneau_finDePartie;
     private javax.swing.JPanel panneau_grille;
