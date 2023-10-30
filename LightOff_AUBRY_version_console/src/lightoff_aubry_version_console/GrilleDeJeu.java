@@ -81,19 +81,19 @@ public class GrilleDeJeu {
                 break;
             case 2:
                 //activer diagonale 
-                int diag = generateurAleat.nextInt(1);
-                if (diag == 0) {
-                    // diagonale déscendante
-                    for (int i = 0; i < this.nbColonnes; i++) {
-                        matriceCellules[i][i].activerCellule();
-                    }
-                } else {
-                    // diagonale montante
-                    for (int i = this.nbColonnes; i < 0; i++) {
-                        matriceCellules[i][this.nbColonnes - i].activerCellule();
-                    }
-                }
-                break;
+                activerDiagonaleAleatoire();
+        }
+    }
+
+    public void activerDiagonaleAleatoire() {
+        Random generateurAleat = new Random();
+        int diag = generateurAleat.nextInt(1);
+        if (diag == 0) {
+            // diagonale déscendante
+            this.activerDiagonaleDescendante();
+        } else {
+            // diagonale montante
+            this.activerDiagonaleMontante();
         }
     }
 
@@ -106,6 +106,9 @@ public class GrilleDeJeu {
         // on la mélange autant de fois que demandé dans nbTours
         for (int i = 0; i < nbTours; i++) {
             this.activerLigneOuCelluleOuDiagonaleAleatoire();
+            if (i % 3 == 0) {
+                activerDiagonaleAleatoire();
+            }
         }
     }
 
