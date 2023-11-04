@@ -98,23 +98,13 @@ public class GrilleDeJeu {
      *
      * @param nbTours nombre de fois que la matrice sera mélangée
      */
-    public void genererMatriceAleatoire(int nbTours) {
-        Random generateurAleat = new Random();
+    public void genererMatriceAleatoire(int nbTours) {        
+        activerDiagonaleMontante();
+        activerDiagonaleDescendante();
         // on la mélange autant de fois que demandé dans nbTours
         for (int i = 0; i < nbTours; i++) {
             this.activerLigneOuCelluleOuDiagonaleAleatoire();
-            if ( i%3 == 0){
-                int diag = generateurAleat.nextInt(1);
-                if (diag == 0) {
-                    // diagonale déscendante
-                    this.activerDiagonaleDescendante();
-                    }
-                } else {
-                    // diagonale montante
-                    this.activerDiagonaleMontante();
                 }
-            }
-            
         }
     
 

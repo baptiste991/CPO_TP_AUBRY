@@ -316,10 +316,10 @@ public class fenetreDeJeu extends javax.swing.JFrame {
 
             jLabel4.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
             jLabel4.setText("Fin de partie");
-            panneau_finDePartie.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, -1, -1));
+            panneau_finDePartie.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, -1, -1));
 
             lbl_victoire_defaite.setText("victoire ou défaite");
-            panneau_finDePartie.add(lbl_victoire_defaite, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, -1, -1));
+            panneau_finDePartie.add(lbl_victoire_defaite, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 190, 70));
 
             getContentPane().add(panneau_finDePartie, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 500, 250, 170));
 
@@ -333,9 +333,9 @@ public class fenetreDeJeu extends javax.swing.JFrame {
         panneau_infos.setVisible(true);
         panneau_grille.setVisible(true);
         if (btn_facile.isSelected()) {
-            n = 15;
+            n = 10;
         } else if (btn_normal.isSelected()) {
-            n = 20;
+            n = 30;
         } else {
             n = 150;
         }
@@ -589,13 +589,14 @@ public class fenetreDeJeu extends javax.swing.JFrame {
 
     public void Victoire() {
         grilleInvisible();
+        panneau_infos.setVisible(false);
         panneau_finDePartie.setVisible(true);
-        lbl_victoire_defaite.setText("Vous avez gagné !");
+        lbl_victoire_defaite.setText("Vous avez gagné en " + nbCoups + " coups !");
     }
 
     public boolean aPerdu() {
         boolean perdu = false;
-        if (nbCoups == nbCoupsMax) {
+        if (nbCoups > nbCoupsMax) {
             perdu = true;
         }
         return perdu;
@@ -603,6 +604,7 @@ public class fenetreDeJeu extends javax.swing.JFrame {
 
     public void Defaite() {
         grilleInvisible();
+        panneau_infos.setVisible(false);
         panneau_finDePartie.setVisible(true);
         lbl_victoire_defaite.setText("Vous avez perdu !");
     }
