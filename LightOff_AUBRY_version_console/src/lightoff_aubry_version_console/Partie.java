@@ -141,7 +141,7 @@ public class Partie {
     }
 
     void Defaite() {
-        System.out.println("Vous avez utilises trop de coups, vous avez perdu :( \n Reessayez encore !");
+        System.out.println("Vous avez utilises trop de coups, vous avez perdu :( \n Essayez encore !");
     }
 
     void bienvenu() {
