@@ -82,6 +82,7 @@ public class GrilleDeJeu {
             case 2:
                 //activer diagonale 
                 activerDiagonaleAleatoire();
+                break;
         }
     }
 
