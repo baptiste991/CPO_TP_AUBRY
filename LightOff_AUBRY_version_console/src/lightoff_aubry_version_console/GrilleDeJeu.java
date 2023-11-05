@@ -15,6 +15,15 @@ public class GrilleDeJeu {
     private CelluleLumineuse[][] matriceCellules;
     private int nbLignes;
     private int nbColonnes;
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLACK = "\u001B[30m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_WHITE = "\u001B[37m";
 
     /**
      * constructeur
@@ -184,11 +193,11 @@ public class GrilleDeJeu {
     @Override
     public String toString() {
         // premier espace
-        String resultat = " Y |";
+        String resultat = ANSI_GREEN + " Y" + ANSI_RESET + " |";
 
         //premiereLigne
         for (int i = 0; i < this.nbColonnes; i++) {
-            resultat += " " + i + " |";
+            resultat += " " + ANSI_GREEN + i + ANSI_RESET +" |";
         }
         // retour chariot
         resultat += "\n";
@@ -201,7 +210,7 @@ public class GrilleDeJeu {
 
         for (int i = 0; i < this.nbLignes; i++) {
             // lettre de ligne 
-            resultat += " " + Character.toString(i + 'A') + " |";
+            resultat += " " + ANSI_GREEN + Character.toString(i + 'A') + ANSI_RESET + " |";
             for (int j = 0; j < this.nbColonnes; j++) {
                 // contenue chaque case de la matrice
                 resultat += " " + matriceCellules[i][j].toString() + " |";
@@ -213,7 +222,7 @@ public class GrilleDeJeu {
             }
             resultat += "\n";
         }
-        resultat += " Z |";
+        resultat += ANSI_GREEN + " Z" + ANSI_RESET + " |";
 
         return resultat;
     }

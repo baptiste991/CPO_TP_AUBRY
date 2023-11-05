@@ -7,6 +7,10 @@ package lightoff_aubry_version_console;
 public class CelluleLumineuse {
 
     private boolean etat;
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+
 
     /**
      * constructeur : initialise par défaut la cellule lumineuse éteinte
@@ -58,10 +62,11 @@ public class CelluleLumineuse {
      */
     @Override
     public String toString() {
+
         if (this.etat) {
-            return "X";
+            return ANSI_BLUE+"X"+ ANSI_RESET;
         } else {
-            return "O";
+            return ANSI_RED+"O"+ANSI_RESET;
         }
     }
 
