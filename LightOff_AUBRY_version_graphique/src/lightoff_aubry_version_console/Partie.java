@@ -83,9 +83,9 @@ public class Partie {
                 // activation dans le cas de la colonne
                 grille.activerColonneDeCellules(Character.getNumericValue(coup));
             } else if (coup == 'Y') {
-                grille.activerDiagonaleDescendante();
+                grille.activerDiagonaleDescendanteHaut();
             } else if (coup == 'Z') {
-                grille.activerDiagonaleMontante();
+                grille.activerDiagonaleMontanteHaut();
             } else {
                 grille.activerLigneDeCellules(coup);
             }

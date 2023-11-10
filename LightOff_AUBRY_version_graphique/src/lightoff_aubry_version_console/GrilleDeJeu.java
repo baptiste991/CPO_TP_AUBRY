@@ -37,8 +37,8 @@ public class GrilleDeJeu {
     public CelluleLumineuse[][] genererNouvelleMatriceCellulesLumineuses() {
         // parcours toutes les lignes et colonnes en ajoutant une cellule 
         // lumineuse dans chaque éléments du tableau
-        for (int i = 0; i < nbColonnes; i++) {
-            for (int j = 0; j < nbLignes; j++) {
+        for (int i = 0; i < nbLignes; i++) {
+            for (int j = 0; j < nbColonnes; j++) {
                 matriceCellules[i][j] = new CelluleLumineuse();
             }
         }
@@ -63,7 +63,7 @@ public class GrilleDeJeu {
     void activerLigneOuCelluleOuDiagonaleAleatoire() {
         Random generateurAleat = new Random();
         // on génere un nb aléatoire afin de choisir aléatoirement un cas
-        int cas = generateurAleat.nextInt(2);
+        int cas = generateurAleat.nextInt(5);
         switch (cas) {
             case 0:
                 // activer lignes
@@ -79,17 +79,22 @@ public class GrilleDeJeu {
                     matriceCellules[i][colonne].activerCellule();
                 }
                 break;
-            case 2:
+            default:
                 //activer diagonale 
-                int diag = generateurAleat.nextInt(1);
-                if (diag == 0) {
-                    // diagonale déscendante
-                    this.activerDiagonaleDescendante();
-                } else {
-                    // diagonale montante
-                    activerDiagonaleMontante();
+                int diag = generateurAleat.nextInt(3);
+                switch (diag) {
+                    case 0 -> // diagonale déscendante
+                        this.activerDiagonaleDescendanteHaut();
+                    case 1 -> // diagonale montante
+                        activerDiagonaleMontanteHaut();
+                    case 2 ->
+                        activerDiagonaleDescBas();
+                    case 3 ->
+                        activerDiagonaleMontanteBas();
                 }
+
                 break;
+
         }
     }
 
@@ -98,25 +103,24 @@ public class GrilleDeJeu {
      *
      * @param nbTours nombre de fois que la matrice sera mélangée
      */
-    public void genererMatriceAleatoire(int nbTours) {        
-        activerDiagonaleMontante();
-        activerDiagonaleDescendante();
+    public void genererMatriceAleatoire(int nbTours) {
+        activerDiagonaleMontanteHaut();
+        activerDiagonaleDescendanteHaut();
         // on la mélange autant de fois que demandé dans nbTours
         for (int i = 0; i < nbTours; i++) {
             this.activerLigneOuCelluleOuDiagonaleAleatoire();
-                }
         }
-    
+    }
 
     /**
      * change l'état de la ligne de cellule en question
      *
      * @param idLigne identificateur de ligne à activer
      */
-    public void activerLigneDeCellules(char idLigne) {
+    public void activerLigneDeCellules(int idLigne) {
         // parcours la ligne en question et active chaque élément
         for (int i = 0; i < this.nbColonnes; i++) {
-            matriceCellules[idLigne - 65][i].activerCellule();
+            matriceCellules[idLigne][i].activerCellule();
         }
     }
 
@@ -127,7 +131,7 @@ public class GrilleDeJeu {
      */
     public void activerColonneDeCellules(int idColonne) {
         // parcours la colonne en question et active chaque élément
-        for (int i = 0; i < this.nbColonnes; i++) {
+        for (int i = 0; i < this.nbLignes; i++) {
             matriceCellules[i][idColonne].activerCellule();
         }
     }
@@ -135,9 +139,9 @@ public class GrilleDeJeu {
     /**
      * change l'état de la diagnale descendante de cellule en question
      */
-    public void activerDiagonaleDescendante() {
+    public void activerDiagonaleDescendanteHaut() {
         // activer diagonale déscendante
-        for (int i = 0; i < this.nbColonnes; i++) {
+        for (int i = 0; i < nbLignes && i < nbColonnes; i++) {
             matriceCellules[i][i].activerCellule();
         }
     }
@@ -145,10 +149,22 @@ public class GrilleDeJeu {
     /**
      * change l'état de la diagnale montante de cellule en question
      */
-    public void activerDiagonaleMontante() {
+    public void activerDiagonaleMontanteHaut() {
         // activer diagonale montante
-        for (int i = 0; i < nbColonnes; i++) {
+        for (int i = 0; i < nbLignes && i < nbColonnes; i++) {
             matriceCellules[i][nbColonnes - i - 1].activerCellule();
+        }
+    }
+
+    public void activerDiagonaleDescBas() {
+        for (int i = 0; i < nbLignes && i < nbColonnes; i++) {
+            matriceCellules[nbLignes - i - 1][nbColonnes - i - 1].activerCellule();
+        }
+    }
+
+    public void activerDiagonaleMontanteBas() {
+        for (int i = 0; i < nbLignes && i < nbColonnes; i++) {
+            matriceCellules[nbLignes - i - 1][i].activerCellule();
         }
     }
 

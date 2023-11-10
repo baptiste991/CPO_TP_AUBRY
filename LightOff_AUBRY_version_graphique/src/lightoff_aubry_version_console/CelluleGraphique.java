@@ -4,8 +4,8 @@
  */
 package lightoff_aubry_version_console;
 
+import java.awt.Color;
 import java.awt.Graphics;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 /**
@@ -15,9 +15,6 @@ import javax.swing.JButton;
 public class CelluleGraphique extends JButton {
 
     CelluleLumineuse celluleAssociee;
-    ImageIcon img_vide = new javax.swing.ImageIcon(getClass().getResource("/images/celluleVide.png"));
-    ImageIcon img_jetonJaune = new javax.swing.ImageIcon(getClass().getResource("/images/jetonJaune.png"));
-    ImageIcon img_jetonRouge = new javax.swing.ImageIcon(getClass().getResource("/images/jetonRouge.png"));
 
     public CelluleGraphique(CelluleLumineuse uneCellule) {
         this.celluleAssociee = uneCellule;
@@ -26,13 +23,17 @@ public class CelluleGraphique extends JButton {
     @Override
     public void paintComponent(Graphics G) {
         super.paintComponent(G);
-        setIcon(img_vide); //on attribut l'image celluleVide.png
+        setContentAreaFilled(false);
+        setBorderPainted(false);
+
+        //on attribut l'image 
         if (celluleAssociee.getEtat()) {
-            setIcon(img_jetonJaune); //on attribut l'image jetonJaune.png
+            G.setColor(Color.yellow); //on attribut la couleur du bouton
+        } else {
+            G.setColor(Color.red);
         }
-        else{
-            setIcon(img_jetonRouge);
-        }
+        G.fillOval(0, 0, 50, 50);
+        //G.draw3DRect(0, 0, 20, 20, true);
     }
 
 }
