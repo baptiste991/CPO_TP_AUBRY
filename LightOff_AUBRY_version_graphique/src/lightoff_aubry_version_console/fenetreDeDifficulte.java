@@ -47,11 +47,11 @@ public class fenetreDeDifficulte extends javax.swing.JFrame {
         panneau_difficulte.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txt_diffPartie.setText("Choix de la difficulté");
-        panneau_difficulte.add(txt_diffPartie, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, -1, 20));
+        panneau_difficulte.add(txt_diffPartie, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, -1, 20));
 
-        txt_bvn.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        txt_bvn.setFont(new java.awt.Font("Segoe UI Black", 0, 36)); // NOI18N
         txt_bvn.setText("Bienvenue dans LIGHTOFF !");
-        panneau_difficulte.add(txt_bvn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, -1, -1));
+        panneau_difficulte.add(txt_bvn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
 
         btn_start.setText("Démarrer la Partie");
         btn_start.addActionListener(new java.awt.event.ActionListener() {
@@ -89,7 +89,7 @@ public class fenetreDeDifficulte extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panneau_difficulte, javax.swing.GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE)
+            .addComponent(panneau_difficulte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,7 +179,7 @@ public class fenetreDeDifficulte extends javax.swing.JFrame {
         gbc.insets = new java.awt.Insets(10, 10, 10, 10);
 
         // Centrer le label "Bienvenue dans LIGHTOFF !"
-        txt_bvn.setFont(new java.awt.Font("Segoe UI Black", 0, 12));
+        txt_bvn.setFont(new java.awt.Font("Segoe UI Black", 0, 50));
         txt_bvn.setText("Bienvenue dans LIGHTOFF!");
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -187,6 +187,7 @@ public class fenetreDeDifficulte extends javax.swing.JFrame {
         panneau_difficulte.add(txt_bvn, gbc);
 
         // Centrer le label "Choix de la difficulté"
+        txt_diffPartie.setFont(new java.awt.Font("Segoe UI Black", 0, 30));
         txt_diffPartie.setText("Choix de la difficulté");
         gbc.gridy = 1;
         panneau_difficulte.add(txt_diffPartie, gbc);
@@ -195,11 +196,10 @@ public class fenetreDeDifficulte extends javax.swing.JFrame {
         btn_facile.setText("Facile");
         btn_facile.addActionListener(this::btn_facileActionPerformed);
         gbc.gridy = 2;
-        gbc.anchor = GridBagConstraints.WEST;
         panneau_difficulte.add(btn_facile, gbc);
 
-        // Centrer le bouton radio "Normale"
-        btn_normal.setText("Normale");
+        // Centrer le bouton radio "Moyen"
+        btn_normal.setText("Moyen");
         btn_normal.addActionListener(this::btn_normalActionPerformed);
         gbc.gridy = 3;
         panneau_difficulte.add(btn_normal, gbc);
