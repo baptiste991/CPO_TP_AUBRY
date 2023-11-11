@@ -21,6 +21,7 @@ public class fenetreDeDifficulte extends javax.swing.JFrame {
      */
     public fenetreDeDifficulte() {
         customInitComponents();
+         btn_start.setEnabled(false);
 
     }
 
