@@ -144,47 +144,35 @@ public class fenetreDeJeu extends javax.swing.JFrame {
         }
 
         JButton bouton_diag_desc = new JButton();
-        ActionListener ecouteurClick = new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                grille.activerDiagonaleDescendanteHaut();
-                nbCoups++;
-                repaint();
-                refreshInfos();
-                testFinDePartie();
-            }
+        ActionListener ecouteurClick = (ActionEvent e) -> {
+            grille.activerDiagonaleDescendanteHaut();
+            nbCoups++;
+            repaint();
+            refreshInfos();
+            testFinDePartie();
         };
         bouton_diag_desc.addActionListener(ecouteurClick);
         panneau_diag_desc_haut.add(bouton_diag_desc);
 
         JButton bouton_diag_mont = new JButton();
-        ActionListener ecouteurClick1 = new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                grille.activerDiagonaleMontanteHaut();
-                nbCoups++;
-                repaint();
-                refreshInfos();
-                testFinDePartie();
-            }
+        ActionListener ecouteurClick1 = (ActionEvent e) -> {
+            grille.activerDiagonaleMontanteHaut();
+            nbCoups++;
+            repaint();
+            refreshInfos();
+            testFinDePartie();
         };
         bouton_diag_mont.addActionListener(ecouteurClick1);
         panneau_diag_mont_haut.add(bouton_diag_mont);
 
         JButton bouton_diag_mont_bas = new JButton();
-        ActionListener ecouteurClick2 = new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //activer diagonale montante du bas
-                grille.activerDiagonaleMontanteBas();
-                nbCoups++;
-                repaint();
-                refreshInfos();
-                testFinDePartie();
-            }
+        ActionListener ecouteurClick2 = (ActionEvent e) -> {
+            //activer diagonale montante du bas
+            grille.activerDiagonaleMontanteBas();
+            nbCoups++;
+            repaint();
+            refreshInfos();
+            testFinDePartie();
         };
         bouton_diag_mont_bas.addActionListener(ecouteurClick2);
         panneau_diag_mont_bas.add(bouton_diag_mont_bas);
@@ -338,11 +326,8 @@ public class fenetreDeJeu extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new fenetreDeJeu(difficulte).setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new fenetreDeJeu(difficulte).setVisible(true);
         });
     }
 
@@ -436,6 +421,7 @@ public class fenetreDeJeu extends javax.swing.JFrame {
         panneau_diag_mont_bas.setVisible(opp);
         panneau_diag_desc_bas.setVisible(opp);
     }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
